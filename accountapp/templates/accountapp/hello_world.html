@@ -1,7 +1,24 @@
 {% extends 'Base.html' %}
 
 {% block content %}
+
+    <style> {#internal style sheet#}
+        .testing {
+            background-color: green;
+            margin: 1rem;
+            height: 48px;
+            width: 48px;
+            border-radius: .5rem;
+        }
+    </style>
+
     <div style="height: 20rem; background-color: antiquewhite; margin: 2rem; border-radius: 1rem;">
         <h1>Test</h1>
+
+        <div class="testing" style="display: block">block</div>
+        <div class="testing" style="display: inline">block</div>
+        <div class="testing" style="display: inline-block">block</div>
+        <div class="testing" style="display: none">block</div>
+        <div class="testing">block</div>
     </div>
 {% endblock %}
