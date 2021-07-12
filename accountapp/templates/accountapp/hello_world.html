@@ -9,9 +9,11 @@
         {% csrf_token %}
         <input type="text" name="input_text">
         <input type="submit" class="btn btn-dark rounded-pill px-4">
-    </form>
 
-    <h3>{{ new_hello_world.text }}</h3>
+        {% for hello_world in hello_list %}
+            <h3>{{ hello_world.text }}</h3>
+        {% endfor %}
+    </form>
 
     </div>
 {% endblock %}

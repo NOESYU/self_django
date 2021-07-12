@@ -13,9 +13,12 @@ def hihi(request):
         new_hello_world.text = temp
         new_hello_world.save() #디비에 저장
 
+        hello_list = HelloWorld.objects.all()
+
         return render(request, 'accountapp/hello_world.html',
-                      context={'new_hello_world' : new_hello_world})
+                      context={'hello_list' : hello_list})
 
     elif request.method == 'GET':
+        hello_list = HelloWorld.objects.all()
         return render(request, 'accountapp/hello_world.html',
-                      context={'text':'Get Method'})
+                      context={'hello_list': hello_list})
