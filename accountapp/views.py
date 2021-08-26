@@ -16,28 +16,12 @@ from accountapp.models import HelloWorld
 from articleapp.models import Article
 
 
-@login_required(login_url=reverse_lazy('accountapp:login'))
-def hihi(request):
-    if request.method == 'POST':
-        temp = request.POST.get('input_text')
-
-        new_hello_world = HelloWorld() #model.py 에 있는 객체 새롭게 생성
-        new_hello_world.text = temp
-        new_hello_world.save() #디비에 저장
-
-        return HttpResponseRedirect(reverse('accountapp:hi'))
-        #urls.py에서 내가 지정해준 name
-
-    elif request.method == 'GET':
-        hello_list = HelloWorld.objects.all()
-        return render(request, 'accountapp/hello_world.html',
-                    context={'hello_list': hello_list})
-
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:hi')
+    success_url = reverse_lazy('articleapp:list')
     template_name ='accountapp/create.html'
+
 
 class AccountDetailView(DetailView, MultipleObjectMixin):
     model = User
@@ -70,5 +54,5 @@ class AccountUpdateView(UpdateView):
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_user'
-    success_url = reverse_lazy('accountapp:hi')
+    success_url = reverse_lazy('articleapp:list')
     template_name = 'accountapp/delete.html'
