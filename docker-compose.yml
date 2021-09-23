@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: nginx:1.19.5
+    ports:
+      - 80:80
+    networks:
+      - sspage_network
+    volumes:
+      - /home/ssunuu114/nginx.conf:/etc/nginx/nginx.conf
+      - sspage_static:/data/static/
+      - sspage_media:/data/media/
+
+  django:
+    image: sspageself:03
+    networks:
+      - sspage_network
+    volumes:
+      - sspage_media:/home/self_django/media
+      - sspage_static:/home/self_django/staticfiles
+
+networks:
+  sspage_network:
+
+volumes:
+  sspage_static:
+  sspage_media:
